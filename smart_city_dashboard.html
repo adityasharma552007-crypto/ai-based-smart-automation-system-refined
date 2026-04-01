@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart AI City Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Smart AI City</h2>
+                <p>INTELLIGENT URBAN MANAGEMENT</p>
+                
+                <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px;">
+                    <select id="state-selector" style="background: rgba(15,42,42,0.8); color: white; border: 1px solid var(--neon-cyan); border-radius: 5px; padding: 6px; font-family: inherit; font-size: 12px; outline: none;"></select>
+                    <select id="city-selector" style="background: rgba(15,42,42,0.8); color: white; border: 1px solid var(--neon-cyan); border-radius: 5px; padding: 6px; font-family: inherit; font-size: 12px; outline: none;"></select>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <a href="#" class="nav-item active" data-target="dashboard">
+                    <span class="icon">⊞</span> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-target="traffic">
+                    <span class="icon">🚗</span> Traffic
+                </a>
+                <a href="#" class="nav-item" data-target="environment">
+                    <span class="icon">🌡️</span> Environment
+                </a>
+                <a href="#" class="nav-item" data-target="waste">
+                    <span class="icon">🗑️</span> Waste
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item"><span class="icon">?</span> Support</a>
+                <a href="#" class="nav-item"><span class="icon">⚙</span> Settings</a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Dashboard View -->
+            <section id="dashboard" class="view-section active">
+                <header class="section-header">
+                    <div>
+                        <h1>City Overview</h1>
+                        <p class="subtitle">Real-time intelligence for the modern metropolis.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn">🔔</button>
+                        <div class="user-profile">
+                            <div class="avatar"></div>
+                            <span>Urban Admin</span>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="dashboard-grid">
+                    <!-- Top row -->
+                    <div class="card banner-card glass-panel">
+                        <span class="badge">SYSTEM PROFILE</span>
+                        <h2>The Digital Observatory</h2>
+                        <p>Smart AI City is an intelligent urban management system designed to optimize city operations through real-time data analysis and AI-driven predictions.</p>
+                        <div class="banner-actions">
+                            <button class="btn primary">Review Analytics</button>
+                            <button class="btn secondary">View Nodes</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card stat-card right-stat top-right">
+                        <div class="stat-header">
+                            <span style="color:var(--neon-cyan)">📈</span>
+                            <span class="stat-label">AI EFFICIENCY</span>
+                        </div>
+                        <h3>94.2%</h3>
+                        <p class="stat-subtext">+2.4% from last interval</p>
+                    </div>
+
+                    <div class="card stat-card right-stat bot-right">
+                        <div class="stat-header">
+                            <span style="color:var(--neon-green)">⚡</span>
+                            <span class="stat-label">GRID LOAD</span>
+                        </div>
+                        <h3>Optimal</h3>
+                        <p class="stat-subtext">Sustaining renewable peak</p>
+                    </div>
+
+                    <!-- Middle Row: Charts placeholder -->
+                    <div class="card chart-card health-card">
+                        <div class="card-title">System Health</div>
+                        <p class="subtitle">Overall Resource Distribution</p>
+                        <div class="donut-chart-container">
+                            <div class="donut-chart">
+                                <span class="donut-text">92%<br><small>OPTIMIZED</small></span>
+                            </div>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="dot traffic-dot"></span> TRAFFIC
+                            <span class="dot env-dot"></span> ENVIRO
+                            <span class="dot waste-dot"></span> WASTE
+                        </div>
+                    </div>
+
+                    <div class="card chart-card pulse-card">
+                        <div class="card-title">Urban Activity Pulse</div>
+                        <p class="subtitle">Real-time aggregate sensor activity (24h)</p>
+                        <div class="area-chart">
+                            <!-- CSS based area chart placeholder -->
+                            <div class="chart-mock"></div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom row modules -->
+                    <div class="card module-card">
+                        <div class="module-header">
+                            <div class="module-icon">🚦</div>
+                            <div>
+                                <div class="module-title">Traffic</div>
+                                <div class="module-subtitle">Central District</div>
+                            </div>
+                        </div>
+                        <div class="module-metrics">
+                            <div class="metric-row">
+                                <span>Traffic Density:</span>
+                                <span>48% Capacity</span>
+                            </div>
+                            <h3 id="dash-traffic-density" style="color: var(--neon-cyan)">Medium</h3>
+                            <div class="progress-bar"><div class="progress" style="width: 48%; background: var(--neon-cyan)"></div></div>
+                        </div>
+                        <button class="btn secondary full-width action-btn" id="btn-predict-traffic">Predict Traffic ↗</button>
+                    </div>
+
+                    <div class="card module-card">
+                        <div class="module-header">
+                            <div class="module-icon" style="background:#0F2A2A;color:var(--neon-green)">🍃</div>
+                            <div>
+                                <div class="module-title">Environment</div>
+                                <div class="module-subtitle">Air Quality Index</div>
+                            </div>
+                        </div>
+                        <div class="module-metrics central-metric">
+                            <div class="donut-mini" style="border-color: var(--neon-green)">
+                                <h3 id="dash-aqi-val">42</h3>
+                                <span>GOOD</span>
+                            </div>
+                            <p>● AQI: <span id="dash-aqi-text">42 (Good)</span></p>
+                        </div>
+                        <button class="btn secondary full-width action-btn" id="btn-refresh-data">Refresh Data ↻</button>
+                    </div>
+
+                    <div class="card module-card">
+                        <div class="module-header">
+                            <div class="module-icon" style="background:#2A1515;color:#FF4C4C">🗑️</div>
+                            <div>
+                                <div class="module-title">Waste</div>
+                                <div class="module-subtitle">Logistics & Removal</div>
+                            </div>
+                        </div>
+                        <div class="module-metrics">
+                            <div class="metric-row">
+                                <span>Bin Status</span>
+                                <span>65% Full</span>
+                            </div>
+                            <div class="alert-box warning-alert" id="dash-waste-alert">
+                                <strong>⚠️ Bin Full in Sector 3</strong><br>
+                                Immediate action suggested
+                            </div>
+                        </div>
+                        <button class="btn danger full-width action-btn" id="btn-schedule-pickup">Schedule Pickup 🚛</button>
+                    </div>
+                    
+                    <div class="card full-width-card">
+                        <div class="card-title">Urban Performance Metrics</div>
+                        <p class="subtitle">System-wide operational efficiency across 12 sectors.</p>
+                        <div class="bar-chart">
+                            <!-- Bars populated via CSS/JS -->
+                            <div class="bar h-40"></div><div class="bar h-60"></div><div class="bar h-30"></div>
+                            <div class="bar h-90"></div><div class="bar h-70"></div><div class="bar h-40"></div>
+                            <div class="bar h-80 h-red"></div><div class="bar h-50"></div><div class="bar h-30 h-dim"></div>
+                            <div class="bar h-60"></div><div class="bar h-80"></div><div class="bar h-70"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <footer class="view-footer">
+                    <span class="status-indicator">● All systems operational</span>
+                    <span>© 2024 Smart AI City • v2.4.11-stable</span>
+                </footer>
+            </section>
+
+            <!-- Traffic View -->
+            <section id="traffic" class="view-section hidden">
+                <header class="section-header">
+                    <div>
+                        <h1>Traffic Control Center</h1>
+                    </div>
+                    <div class="header-nav">
+                        <a href="#" class="active">Live Feed</a>
+                        <a href="#">Analytics</a>
+                        <a href="#">Optimization</a>
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn">🔔</button>
+                        <div class="user-profile">
+                            <div class="avatar"></div>
+                        </div>
+                    </div>
+                </header>
+                <div class="dashboard-grid traffic-grid">
+                     <div class="card map-card col-span-2 row-span-2">
+                        <div class="badge glow-badge">● LIVE SURVEILLANCE ACTIVE</div>
+                        <div class="map-overlay"></div>
+                        <div class="map-details">
+                            <h2>District 04: Central Hub</h2>
+                            <p>📍 34.0522° N, 118.2437° W • Los Angeles Sector</p>
+                        </div>
+                     </div>
+                     <div class="card stats-side">
+                         <div class="stat-block">
+                             <p class="subtitle">AVERAGE DENSITY</p>
+                             <h2>High <span class="trend bad">+12% vs. Normal</span></h2>
+                         </div>
+                         <div class="progress-labels">
+                             <div class="lbl-row"><span>AUTONOMOUS FLEET</span> <span style="color:var(--neon-cyan)">64% CAPACITY</span></div>
+                             <div class="progress-bar"><div class="progress" style="width: 64%; background: var(--neon-cyan)"></div></div>
+                             
+                             <div class="lbl-row mt-3"><span>PRIVATE TRANSIT</span> <span style="color:var(--neon-green)">28% CAPACITY</span></div>
+                             <div class="progress-bar"><div class="progress" style="width: 28%; background: var(--neon-green)"></div></div>
+                             
+                             <div class="lbl-row mt-3"><span>CONGESTION DELAY</span> <span style="color:#FF6B6B">92% INTENSITY</span></div>
+                             <div class="progress-bar"><div class="progress" style="width: 92%; background: #FF6B6B"></div></div>
+                         </div>
+                         <button class="btn primary-cyan full-width mt-4" style="height: 60px;">PREDICT FUTURE TRAFFIC &nbsp; <small>(AI engine v4.2)</small></button>
+                     </div>
+                     <div class="card stat-box bottom-stat1">
+                         <h2>1,204</h2>
+                         <p class="subtitle">EV CHARGING</p>
+                     </div>
+                     <div class="card stat-box bottom-stat2">
+                         <h2>42 <small>km/h</small></h2>
+                         <p class="subtitle">AVG. SPEED</p>
+                     </div>
+                     <div class="card chart-card mt-4 col-span-1">
+                         <div class="card-title">Vehicle Distribution</div>
+                         <div class="donut-container with-legend">
+                             <div class="donut-chart large-donut">
+                                 <span class="donut-text">8.2k<br><small>TOTAL</small></span>
+                             </div>
+                             <div class="donut-legend">
+                                 <div><span class="dot" style="background:#00F0FF"></span> AUTONOMOUS: 45%</div>
+                                 <div><span class="dot" style="background:#00FF66"></span> PRIVATE ICE: 35%</div>
+                                 <div><span class="dot" style="background:#B026FF"></span> COMMERCIAL EV: 20%</div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="card chart-card mt-4 col-span-2">
+                         <div class="card-title flex-between">
+                             <span>Sector Congestion Index</span>
+                             <span class="legend-mini"><span class="dot red"></span> CRITICAL <span class="dot cyan"></span> OPTIMAL</span>
+                         </div>
+                         <div class="congestion-bars">
+                             <div class="c-bar"><div class="c-lbl">Central District (D-04) <span>88%</span></div><div class="progress-bar"><div class="progress" style="width: 88%; background: #FF6B6B"></div></div></div>
+                             <div class="c-bar"><div class="c-lbl">Industrial North (I-01) <span>42%</span></div><div class="progress-bar"><div class="progress" style="width: 42%; background: var(--neon-cyan)"></div></div></div>
+                             <div class="c-bar"><div class="c-lbl">Residential West (R-08) <span>24%</span></div><div class="progress-bar"><div class="progress" style="width: 24%; background: var(--neon-green)"></div></div></div>
+                             <div class="c-bar"><div class="c-lbl">Tech Hub East (T-03) <span>65%</span></div><div class="progress-bar"><div class="progress" style="width: 65%; background: var(--neon-cyan)"></div></div></div>
+                         </div>
+                     </div>
+                </div>
+            </section>
+
+            <!-- Environment View -->
+            <section id="environment" class="view-section hidden">
+                <header class="section-header">
+                    <div>
+                        <h1>Environment Systems</h1>
+                    </div>
+                     <div class="header-actions">
+                        <button class="btn custom-btn" id="env-refresh-btn">↻ Refresh Data</button>
+                        <button class="icon-btn">🔔</button>
+                        <div class="user-profile">
+                            <div class="avatar"></div>
+                        </div>
+                    </div>
+                </header>
+                <div class="dashboard-grid env-grid">
+                    <div class="card env-banner col-span-3">
+                        <span class="badge badge-green">LIVE ATMOSPHERE STREAM</span>
+                        <h1>Clear Skies Over<br>Sector-7G</h1>
+                        <p>The city's atmospheric filters are performing at 98% efficiency. Air quality remains in the optimal zone for outdoor activities.</p>
+                        <div class="env-banner-stats">
+                            <div class="eb-stat"><p>CONDITION</p><h3>Sunny</h3></div>
+                            <div class="eb-stat"><p>WIND SPEED</p><h3>12 km/h</h3></div>
+                        </div>
+                    </div>
+                    
+                    <div class="card metric-card">
+                        <p class="subtitle">TEMPERATURE 🌡️</p>
+                        <h1 class="huge-val" id="env-temp">22<span>°C</span></h1>
+                        <p class="trend good">↓ 2°C lower than yesterday</p>
+                    </div>
+                    <div class="card metric-card">
+                        <p class="subtitle">AIR QUALITY INDEX 🍃</p>
+                        <h1 class="huge-val color-green" id="env-aqi">42</h1>
+                        <div class="aqi-bars">
+                            <div class="ab active"></div><div class="ab active"></div><div class="ab"></div><div class="ab"></div><div class="ab"></div>
+                        </div>
+                    </div>
+                    <div class="card metric-card">
+                        <p class="subtitle">HUMIDITY 💧</p>
+                        <h1 class="huge-val" id="env-humidity">55<span>%</span></h1>
+                        <div class="progress-bar"><div class="progress" style="width: 55%; background: #A78BFA"></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Waste View -->
+            <section id="waste" class="view-section hidden">
+                <header class="section-header">
+                    <div>
+                        <h1>Waste Management</h1>
+                    </div>
+                    <div class="header-nav">
+                        <a href="#">Overview</a>
+                        <a href="#" class="active">Live Map</a>
+                        <a href="#">Analytics</a>
+                    </div>
+                    <div class="header-actions">
+                         <button class="icon-btn">🔔</button>
+                        <div class="user-profile">
+                            <div class="avatar"></div>
+                        </div>
+                    </div>
+                </header>
+                <div class="dashboard-grid waste-grid">
+                    <div class="card map-card col-span-2">
+                         <div class="map-overlay"></div>
+                         <div class="map-details flex-between">
+                             <div>
+                                <h2>Metropolis Grid View</h2>
+                                <p>Active Monitoring: 42 Sectors</p>
+                             </div>
+                             <button class="btn primary-cyan" id="waste-sch-btn">🚛 Schedule Pickup</button>
+                         </div>
+                    </div>
+                    <div class="card alert-side">
+                        <p class="subtitle">CRITICAL ALERTS</p>
+                        <div class="alert-item high-priority" id="w-alert-1">
+                            <h3>⚠️ Bin Full in Sector 3</h3>
+                            <p>Capacity: 98% • Priority: High</p>
+                            <span class="action-link red-link">Dispatch Immediate Truck</span>
+                        </div>
+                         <div class="alert-item scheduled" id="w-alert-2">
+                            <h3>🕒 Scheduled Pickup</h3>
+                            <p>Sector 1 at 10 AM • 4 Units Pending</p>
+                            <span class="action-link">Adjust Route</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card chart-card mt-4 col-span-3">
+                         <div class="card-title">Sector Capacity Status</div>
+                         <div class="grid-4 mt-4" id="bin-container">
+                             <div class="bin-card">
+                                 <div class="bc-header"><span class="bin-icon green">🗑️</span> <span class="badge-sm green">EMPTY</span></div>
+                                 <h3>Sector 1</h3>
+                                 <p class="subtitle">Residential District</p>
+                                 <div class="progress-bar mb-2"><div class="progress" style="width: 12%; background: var(--neon-green)"></div></div>
+                                 <div class="flex-between"><small>12% Capacity</small><small>Normal</small></div>
+                             </div>
+                             <div class="bin-card">
+                                 <div class="bc-header"><span class="bin-icon yellow">🗑️</span> <span class="badge-sm yellow">HALF FULL</span></div>
+                                 <h3>Sector 2</h3>
+                                 <p class="subtitle">Downtown Commercial</p>
+                                 <div class="progress-bar mb-2"><div class="progress" style="width: 54%; background: #FCD34D"></div></div>
+                                 <div class="flex-between"><small>54% Capacity</small><small>Rising</small></div>
+                             </div>
+                             <div class="bin-card critical-bin">
+                                 <div class="bc-header"><span class="bin-icon red">🗑️</span> <span class="badge-sm red">FULL</span></div>
+                                 <h3>Sector 3</h3>
+                                 <p class="subtitle">Industrial Zone</p>
+                                 <div class="progress-bar mb-2"><div class="progress" style="width: 98%; background: #EF4444"></div></div>
+                                 <div class="flex-between"><small>98% Capacity</small><small class="text-red">Critical</small></div>
+                             </div>
+                             <div class="bin-card">
+                                 <div class="bc-header"><span class="bin-icon green">🗑️</span> <span class="badge-sm green">EMPTY</span></div>
+                                 <h3>Sector 4</h3>
+                                 <p class="subtitle">Public Parklands</p>
+                                 <div class="progress-bar mb-2"><div class="progress" style="width: 8%; background: var(--neon-green)"></div></div>
+                                 <div class="flex-between"><small>8% Capacity</small><small>Optimal</small></div>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        let citiesData = {};
+        
+        async function fetchCities() {
+            try {
+                const response = await fetch('http://localhost:5000/api/cities');
+                citiesData = await response.json();
+                
+                const stateSelect = document.getElementById('state-selector');
+                const citySelect = document.getElementById('city-selector');
+                
+                if (!stateSelect || !citySelect) return;
+                
+                stateSelect.innerHTML = '';
+                Object.keys(citiesData).forEach(state => {
+                    const opt = document.createElement('option');
+                    opt.value = state;
+                    opt.textContent = state;
+                    stateSelect.appendChild(opt);
+                });
+                
+                // Set default to Rajasthan
+                if(citiesData['Rajasthan']) {
+                    stateSelect.value = 'Rajasthan';
+                }
+                
+                stateSelect.addEventListener('change', () => {
+                    updateCityDropdown();
+                    fetchData();
+                    if(window.generateTrafficData) window.generateTrafficData();
+                    if(window.generateEnvironmentData) window.generateEnvironmentData();
+                    if(window.generateWasteData) window.generateWasteData();
+                });
+                
+                citySelect.addEventListener('change', () => {
+                    fetchData();
+                    if(window.generateTrafficData) window.generateTrafficData();
+                    if(window.generateEnvironmentData) window.generateEnvironmentData();
+                    if(window.generateWasteData) window.generateWasteData();
+                });
+                
+                updateCityDropdown();
+            } catch (e) {
+                console.error("Error loading cities", e);
+            }
+        }
+        
+        function updateCityDropdown() {
+            const stateSelect = document.getElementById('state-selector');
+            const citySelect = document.getElementById('city-selector');
+            if(!stateSelect || !citySelect) return;
+            
+            const selectedState = stateSelect.value;
+            const cities = citiesData[selectedState] || [];
+            
+            citySelect.innerHTML = '';
+            cities.forEach(city => {
+                const opt = document.createElement('option');
+                opt.value = city;
+                opt.textContent = city;
+                citySelect.appendChild(opt);
+            });
+            
+            // Set default to Jaipur if in Rajasthan
+            if(selectedState === 'Rajasthan' && cities.includes('Jaipur')) {
+                citySelect.value = 'Jaipur';
+            }
+        }
+
+        function fetchData() {
+            const citySelect = document.getElementById('city-selector');
+            const q = (citySelect && citySelect.value) ? '?city=' + encodeURIComponent(citySelect.value) : '';
+            Promise.all([
+                fetch('http://localhost:5000/api/weather' + q).then(res => res.json()),
+                fetch('http://localhost:5000/api/traffic' + q).then(res => res.json()),
+                fetch('http://localhost:5000/api/waste' + q).then(res => res.json())
+            ])
+            .then(([weather, traffic, waste]) => {
+                const tempEl = document.getElementById('temp');
+                if (tempEl && weather.temp !== undefined) {
+                    tempEl.textContent = Number(weather.temp).toFixed(1) + "°C";
+                }
+                
+                const aqiEl = document.getElementById('aqi-val');
+                if (aqiEl && weather.aqi !== undefined) {
+                    aqiEl.textContent = Math.round(weather.aqi);
+                }
+                
+                const speedEl = document.getElementById('avg-speed');
+                if (speedEl && traffic.avg_speed !== undefined) {
+                    speedEl.textContent = Number(traffic.avg_speed).toFixed(1);
+                }
+                
+                const incidentsEl = document.getElementById('incidents');
+                if (incidentsEl && traffic.incidents !== undefined) {
+                    incidentsEl.textContent = Math.round(traffic.incidents);
+                }
+                
+                const wasteEffEl = document.getElementById('waste-eff');
+                if (wasteEffEl && waste.zone_a !== undefined && waste.zone_b !== undefined && waste.zone_c !== undefined) {
+                    const avg = (waste.zone_a + waste.zone_b + waste.zone_c) / 3;
+                    wasteEffEl.textContent = Math.round(100 - avg) + "%";
+                }
+                
+                const binsFullEl = document.getElementById('bins-full');
+                if (binsFullEl && waste.bins_full !== undefined) {
+                    binsFullEl.textContent = Math.round(waste.bins_full);
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching dashboard data:", error);
+            });
+        }
+        
+        // initialize
+        fetchCities().then(() => {
+            fetchData();
+            setInterval(fetchData, 60000);
+        });
+    </script>
+</body>
+</html>
