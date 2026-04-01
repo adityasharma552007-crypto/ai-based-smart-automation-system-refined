@@ -406,7 +406,7 @@
         
         async function fetchCities() {
             try {
-                const response = await fetch('http://127.0.0.1:5000/api/cities');
+                const response = await fetch('https://ai-based-smart-automation-system-refined.onrender.com/api/cities');
                 citiesData = await response.json();
                 
                 const stateSelect = document.getElementById('state-selector');
@@ -474,9 +474,9 @@
             const citySelect = document.getElementById('city-selector');
             const q = (citySelect && citySelect.value) ? '?city=' + encodeURIComponent(citySelect.value) : '';
             Promise.all([
-                fetch('http://127.0.0.1:5000/api/weather' + q).then(res => res.json()),
-                fetch('http://127.0.0.1:5000/api/traffic' + q).then(res => res.json()),
-                fetch('http://127.0.0.1:5000/api/waste' + q).then(res => res.json())
+                fetch('https://ai-based-smart-automation-system-refined.onrender.com/api/weather' + q).then(res => res.json()),
+                fetch('https://ai-based-smart-automation-system-refined.onrender.com/api/traffic' + q).then(res => res.json()),
+                fetch('https://ai-based-smart-automation-system-refined.onrender.com/api/waste' + q).then(res => res.json())
             ])
             .then(([weather, traffic, waste]) => {
                 const tempEl = document.getElementById('temp');
