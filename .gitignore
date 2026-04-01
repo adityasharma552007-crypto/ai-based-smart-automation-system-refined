@@ -1,9 +1,4 @@
 .env
-.venv
 __pycache__/
 *.pyc
-*.pyo
-venv/
-node_modules/
 waste_data.json
-.DS_Store

@@ -164,6 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
     generateTrafficData();
     generateEnvironmentData();
     generateWasteData();
+    
+    // Expose to window for global access
+    window.generateTrafficData = generateTrafficData;
+    window.generateEnvironmentData = generateEnvironmentData;
+    window.generateWasteData = generateWasteData;
 
 
     // --- Interactivity / Buttons ---
